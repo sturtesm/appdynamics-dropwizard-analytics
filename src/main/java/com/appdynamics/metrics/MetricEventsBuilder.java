@@ -3,7 +3,7 @@ package com.appdynamics.metrics;
 import java.io.IOException;
 import java.util.List;
 
-import org.testng.log4testng.Logger;
+import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
