@@ -205,7 +205,30 @@ public class AppdynamicsReporter extends ScheduledReporter {
 		MetricsRecord record = new MetricsRecord(name, 
 				esClient.getConfig().getAttributeValues());
 
-		record.setMean((Double)gauge.getValue());
+		Object o = gauge.getValue();
+		Double v = new Double(0);
+		
+		if (o instanceof Integer) {
+			v = new Double((Integer) o);
+		}
+		else if (o instanceof Double) {
+			v = new Double((Double) o);
+		}
+		else if (o instanceof Float) {
+			v = new Double((Float) o);
+		}
+		else if (o instanceof String) {
+			LOGGER.error("Gauges as Strings are not currently support...");
+			
+			return;
+		}
+		else {
+			LOGGER.error("Gauge is an unsupported type of " + o.getClass().getName());
+			
+			return;
+		}
+		
+		record.setMean(v);
 	}
 
 	private void report(MetricsRecord record) {

@@ -12,17 +12,21 @@ public class AppDynamicsReporterSample {
 	static final MetricRegistry metrics = new MetricRegistry();
 
 	public static void main(String args[]) {
-		
+
 		startReport();
 		Timer responseTime = metrics.timer("response-time");
 		Meter requests = metrics.meter("requests");
-		requests.mark();
 
-		responseTime.update(0, TimeUnit.MILLISECONDS);
-		wait5Seconds();
-		responseTime.update(5, TimeUnit.SECONDS);
-		requests.mark(5);
-		wait5Seconds();
+
+		for (int i = 0; i < 10; i++) {
+			requests.mark();
+
+			responseTime.update(0, TimeUnit.MILLISECONDS);
+			wait5Seconds();
+			responseTime.update(5, TimeUnit.SECONDS);
+			requests.mark(5);
+			wait5Seconds();
+		}
 	}
 
 	static void startReport() {
@@ -34,9 +38,11 @@ public class AppDynamicsReporterSample {
 				"https", 
 				EventServiceConfig.ES_ENDPOINT_DEFAULT, 
 				null,
-				"MetricsSchema", 
+				"PayPalMetrics", 
 				"customer1_dd34e97c-2906-4a86-a005-8c3efd1daa08", 
-				"0d91579c-3266-4645-9348-4bf268f11a4f");
+
+				//the below is the customer API key created for paypal
+				"88bc27f6-5505-4465-b54e-78f9f1f34099");
 
 		AppdynamicsReporter reporter = AppdynamicsReporter.forRegistry(metrics)
 				.convertRatesTo(TimeUnit.SECONDS)
