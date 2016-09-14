@@ -36,6 +36,14 @@ The reporter is built by instantiating an <b>EventServiceConfig</b> object which
 				.build(config);
 
 		reporter.start(1, TimeUnit.SECONDS);
+		
+		
+## Screenshots
+![Alt text](screenshots/analytics-dw-events.png?raw=true "Custom Events in AppDynamics added from DropWizard API Integration")
+
+![Alt text](screenshots/analytics-dw-dashboard.png?raw=true "Custom Analytics Dashboards in AppDynamics added from DropWizard API Integration")
+
+
 
 # Known Limitations
 
