@@ -38,17 +38,28 @@ public class AppDynamicsReporterSample {
 				"https", 
 				EventServiceConfig.ES_ENDPOINT_DEFAULT, 
 				null,
-				"PayPalMetrics", 
-				"customer1_dd34e97c-2906-4a86-a005-8c3efd1daa08", 
+				"DropWizardMetrics", 
+				
+				/**
+				 *  our global customer id [SE Demo West] - "customer1_dd34e97c-2906-4a86-a005-8c3efd1daa08" 
+				 **/
+				
+				/** SE DevOps Demo */
+				"customer1_39dd8ae2-2a22-4869-9de5-b987f37d6d8d",
 
-				//the below is the customer API key created for paypal
-				"88bc27f6-5505-4465-b54e-78f9f1f34099");
+				"17f37fac-b605-4388-805d-51350572c9d2");
+				
+				/** the below is the customer API key created for paypal
+				 * 	
+				 * 	[SE Demo West API Key] "88bc27f6-5505-4465-b54e-78f9f1f34099");
+				 *  [SE DevOps Demo API Key] 17f37fac-b605-4388-805d-51350572c9d2
+				 */
 
 		AppdynamicsReporter reporter = AppdynamicsReporter.forRegistry(metrics)
 				.convertRatesTo(TimeUnit.SECONDS)
 				.convertDurationsTo(TimeUnit.MILLISECONDS)
 				.build(config);
-
+		
 		reporter.start(1, TimeUnit.SECONDS);
 	}
 
